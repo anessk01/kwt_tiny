@@ -1,0 +1,22 @@
+initialisation count: 870 cycles
+
+pre-transformer computations: 1,426,971 cycles
+
+transformer computations: attention, postnorm and incrememnt: 10,160,584 cycles
+--> forwardAttention: matrixMultiply: 2,138,879 cycles
+--> forwardAttention: chunk_qkv: 5,909 cycles
+--> forwardAttention: splitIntoQKV: 5,786 cycles
+--> forwardAttention: scaledDotProductAttention: 6,247,633 cycles   -->  now approx 3.7 million after softmax accel
+--> forwardAttention: linear_final_attn: 756,167 cycles
+--> forwardPostNorm_attn: layerNorm: 973,399 cycles
+
+transformer computations: forward layer, postnorm and increment: 14,421,927 cycles
+--> forwardFeedForward: linear: 2,232,196 cycles
+--> forwardFeedForward: gelu: 9,004,362 cycles (!!!)   -->  now approx 2.3 million after gelu accel
+--> forwardFeedForward: linear: 2,147,743 cycles
+--> forwardPostNorm: layerNorm: 978,200 cycles
+
+post-transformer computations: 984,120
+
+
+separately - total count: 26,984,134 cycles  --> now approx 17.8 million after softmax and gelu accel

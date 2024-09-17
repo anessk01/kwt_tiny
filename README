@@ -1,0 +1,7 @@
+This is an initial version of the codebase used for the KWT-Tiny paper. It provides a gcc-compiled executable (kwtmalloc) which takes in a pre-processed 1-second audio snippet (in_ds.c) and passes it through the KWT-Tiny model (with no special hardware instructions or acceleration).
+
+The key orchestration of the model inference is performed in kwtmalloc.c, relying on many helper functions provided in helpers.c and the model weights in model_weights_t.c
+
+This codebase provides an example for how a transformer model can be inferenced through custom bare metal C code without relying on libraries like PyTorch Mobile or Tensorflow Lite. Such an application is most useful where memory is constrained and/or speed is key, i.e. as in embedded systems. 
+
+Future revisions of this repository will include the pre-processing code that is able to process any MP3 snippet into in_ds.c format, as well as the training code and PyTorch architecture of the KWT-Tiny model.
